@@ -3,7 +3,9 @@
 namespace Database\Seeders;
 
 use App\Models\Meeting;
+use App\Models\Project;
 use App\Models\Sprint;
+use App\Models\Task;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -24,6 +26,14 @@ class DatabaseSeeder extends Seeder
             ;
         });
         Sprint::factory(2)->create();
+
+        Collection::times(3, function ($index) {
+            Project::factory()
+                ->state(['title' => "Project $index"])
+                ->has(Task::factory(5))
+                ->create()
+            ;
+        });
 
         User::factory()->create([
             'name' => 'Test User',
