@@ -131,7 +131,7 @@ class ProjectCalendarWidget extends BaseCalendarWidget
     {
         parent::onEventDrop($info);
 
-        if (in_array($this->getModel(), [Meeting::class, Sprint::class])) {
+        if (in_array($this->getModel(), [Task::class])) {
             $record = $this->getRecord();
 
             if ($delta = data_get($info, 'delta')) {
@@ -161,7 +161,7 @@ class ProjectCalendarWidget extends BaseCalendarWidget
     {
         parent::onEventResize($info);
 
-        if ($this->getModel() === Sprint::class) {
+        if ($this->getModel() === Task::class) {
             $record = $this->getRecord();
             if ($delta = data_get($info, 'endDelta')) {
                 $endsAt = $record->ends_at;
