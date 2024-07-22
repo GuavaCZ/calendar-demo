@@ -2,9 +2,12 @@
 
 namespace Database\Seeders;
 
+use App\Models\Meeting;
+use App\Models\Sprint;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Collection;
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,7 +16,14 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+
+        Collection::times(5, function () {
+            Meeting::factory()
+                ->hasUsers(random_int(1, 3))
+                ->create()
+            ;
+        });
+        Sprint::factory(2)->create();
 
         User::factory()->create([
             'name' => 'Test User',
