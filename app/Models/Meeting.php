@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use Guava\Calendar\Contracts\Eventable;
-use Guava\Calendar\ValueObjects\Event;
+use Guava\Calendar\ValueObjects\CalendarEvent;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -29,9 +29,9 @@ class Meeting extends Model implements Eventable
         return $this->belongsToMany(User::class);
     }
 
-    public function toEvent(): array | Event
+    public function toCalendarEvent(): CalendarEvent
     {
-        return Event::make($this)
+        return CalendarEvent::make($this)
             ->title($this->title)
             ->start($this->starts_at)
             ->end($this->ends_at)

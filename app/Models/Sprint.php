@@ -4,7 +4,7 @@ namespace App\Models;
 
 use App\Enums\Priority;
 use Guava\Calendar\Contracts\Eventable;
-use Guava\Calendar\ValueObjects\Event;
+use Guava\Calendar\ValueObjects\CalendarEvent;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -29,9 +29,9 @@ class Sprint extends Model implements Eventable
         ];
     }
 
-    public function toEvent(): array | Event
+    public function toCalendarEvent(): CalendarEvent
     {
-        return Event::make($this)
+        return CalendarEvent::make($this)
             ->title($this->title)
             ->start($this->starts_at)
             ->end($this->ends_at)
